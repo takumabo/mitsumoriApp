@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.0.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.0.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.0.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.0.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.0.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <script src="jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>お見積もりシュミレーション</title>
+  </head>
+  <body>
+    <div class="choose_box">
+      <!-- 質問一覧 -->
+      <div class="app-theme">
+        <h2>簡単WEBお見積もりシュミレーション</h2>
+      </div>
+
+      <div class="count_q">
+          <p><span class="countNumber">1</span> / 10</p>
+      </div>
+
+
+      <!-- 質問1 -->
+      <div id="q_01" class="fit">
+        <p>質問1:どんなコンテンツを作りたいですか？　</p>
+        <section>
+              <a class="btn" href="#q_02" data-value="100000">
+                  <p class="btn-top">コーポレートサイト</p>
+                  <i class="fas fa-desktop"></i>
+                  <p class="btn-btm">企業情報をまとめたサイトです。</p>
+              </a>
+
+              <a class="btn" href="#q_02" data-value="200000">
+                  <p class="btn-top">ECサイト</p>
+                  <i class="fas fa-shopping-cart"></i>
+                  <p class="btn-btm">商品を扱うためのサイトです。</p>
+              </a>
+
+              <a class="btn" href="#q_02" data-value="300000">
+                  <p class="btn-top">システム構築</p>
+                  <i class="fas fa-user-clock"></i>
+                  <p class="btn-btm">データを取り扱うシステムを構築します。</p>
+              </a>
+
+              <a class="btn" href="#q_02" data-value="20000">
+                  <p class="btn-top">ランディングページ</p>
+                  <i class="fas fa-scroll"></i>
+                  <p class="btn-btm">WEB上で広告などに使うためのサイトです。</p>
+              </a>
+          </section>
+      </div>
+
+      <!-- 質問2 -->
+      <div id="q_02" style="display: none;">
+        <p>質問2:　どのくらいのページを作成しますか？</p>
+        <section>
+          <a class="btn" href="#q_03" data-value="20000">
+              <p class="btn-top">1 ~ 4</p>
+              <p class="btn-btm">最低限の枚数になります。</p>
+          </a>
+
+          <a class="btn" href="#q_03" data-value="50000">
+              <p class="btn-top">5 ~ 9</p>
+              <p class="btn-btm">基本的な情報を掲載できます。</p>
+          </a>
+
+          <a class="btn" href="#q_03" data-value="100000">
+              <p class="btn-top">10 ~ 20</p>
+              <p class="btn-btm">サイト訪問者によく知ってもらえます。</p>
+          </a>
+
+          <a class="btn" href="#q_03" data-value="150000">
+              <p class="btn-top">21 ~ 50</p>
+              <p class="btn-btm">大規模なサイト構築のためのページ数です。</p>
+          </a>
+      </section>
+      </div>
+
+      <!-- 質問3 -->
+      <div id="q_03" style="display: none;">
+        <p>質問3:　ログイン機能は必要ですか？</p>
+          <section>
+              
+              <a class="btn" href="#q_04" data-value="50000">
+                  <p class="btn-top">必要</p>
+                  <i class="fas fa-user-check"></i>
+              </a>
+              
+              <a class="btn" href="#q_04" data-value="0">
+                  <p class="btn-top">必要ない</p>
+                  <i class="fas fa-user-alt-slash"></i>
+              </a>
+
+              <a class="btn" href="#q_04" data-value="30000">
+                  <p class="btn-top">わからない</p>
+                  <i class="fas fa-wrench"></i>
+              </a>
+          </section>
+      </div>
+
+      <!-- 質問4 -->
+      <div id="q_04" style="display: none;">
+        <p>質問4:　顧客管理は必要ですか？</p>
+          <section>
+              <a class="btn" href="#q_05" data-value="150000">
+                  <p class="btn-top">はい</p>
+                  <i class="fas fa-signal"></i>
+              </a>
+
+              <a class="btn" href="#q_05" data-value="0">
+                  <p class="btn-top">いいえ</p>
+                  <i class="fas fa-slash"></i>
+              </a>
+          </section>
+      </div>
+
+      <!-- 質問5 -->
+      <div id="q_05" style="display: none;">
+        <p>質問5:　決済機能は必要ですか？</p>
+        <section>
+          <a class="btn" href="#q_06" data-value="100000">
+              <p class="btn-top">はい</p>
+              <i class="fas fa-dollar-sign"></i>
+          </a>
+
+          <a class="btn" href="#q_06" data-value="0">
+              <p class="btn-top">いいえ</p>
+              <i class="fas fa-slash"></i>
+          </a>
+      </section>
+      </div>
+
+      <!-- 質問6 -->
+      <div id="q_06" style="display: none;">
+          <p>質問6:　検索機能は必要ですか？</p>
+          <section>
+            <a class="btn" href="#q_07" data-value="50000">
+                <p class="btn-top">はい</p>
+                <i class="fas fa-search"></i>
+            </a>
+
+            <a class="btn" href="#q_07" data-value="0">
+                <p class="btn-top">いいえ</p>
+                <i class="fas fa-slash"></i>
+            </a>
+        </section>
+        </div>
+
+        <!-- 質問7 -->
+      <div id="q_07" style="display: none;">
+          <p>質問7:　情報の更新はご自身でされますか？</p>
+          <section>
+            <a class="btn" href="#q_08" data-value="50000">
+                <p class="btn-top">はい</p>
+                <i class="fas fa-address-card"></i>
+            </a>
+
+            <a class="btn" href="#q_08" data-value="0">
+                <p class="btn-top">いいえ</p>
+                <i class="fas fa-slash"></i>
+            </a>
+        </section>
+        </div>
+
+       <!-- 質問8 -->
+       <div id="q_08" style="display: none;">
+          <p>質問8:　スマホ対応もしますか？</p>
+          <section>
+            <a class="btn" href="#q_09" data-value="100000">
+                <p class="btn-top">はい</p>
+                <i class="fas fa-mobile-alt"></i>
+            </a>
+
+            <a class="btn" href="#q_09" data-value="0">
+                <p class="btn-top">いいえ</p>
+                <i class="fas fa-slash"></i>
+            </a>
+        </section>
+        </div>
+
+        <!-- 質問9 -->
+       <div id="q_09" style="display: none;">
+          <p>質問9:　デザイン案はすでにお持ちですか？</p>
+          <section>
+            <a class="btn" href="#q_10" data-value="0">
+                <p class="btn-top">はい</p>
+                <i class="fas fa-magic"></i>
+            </a>
+
+            <a class="btn" href="#q_10" data-value="50000">
+                <p class="btn-top">いいえ</p>
+                <i class="fas fa-slash"></i>
+            </a>
+        </section>
+        </div>
+
+         <!-- 質問10 -->
+       <div id="q_10" style="display: none;">
+          <p>質問10:　写真やロゴなどの素材はすでにお持ちですか？</p>
+          <section>
+            <a class="btn end" data-value="0">
+                <p class="btn-top">はい</p>
+                <i class="fas fa-photo-video"></i>
+            </a>
+
+            <a class="btn end" data-value="50000">
+                <p class="btn-top">いいえ</p>
+                <i class="fas fa-slash"></i>
+            </a>
+        </section>
+        </div>
+
+
+
+  <!-- 見積もり結果-->
+     <div id="answer" class="result" style="display: none;">
+      <div class="result_theme ">
+            <p>WEBお見積もりシュミレーション結果</p>
+      </div>
+      <div class="all-cost-title">
+          お見積もり総額：<span class="all-cost"></span> 円
+      </div>
+      <section class="estimation">
+          <table>
+              <tr>
+                <th>制作コンテンツ：<span class="q1_kind">-</span></th>
+                <td><span class="q1_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>ページ数：<span class="q2_kind">-</span></th>
+                  <td><span class="q2_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>ログイン機能：<span class="q3_kind">-</span></th>
+                  <td><span class="q3_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>顧客管理機能：<span class="q4_kind">-</span></th>
+                  <td><span class="q4_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>決済機能：<span class="q5_kind">-</span></th>
+                  <td><span class="q5_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>検索機能：<span class="q6_kind">-</span></th>
+                  <td><span class="q6_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>サイトの運用・更新：<span class="q7_kind">-</span></th>
+                  <td><span class="q7_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>スマホ対応：<span class="q8_kind">-</span></th>
+                  <td><span class="q8_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>デザイン案の有無：<span class="q9_kind">-</span></th>
+                  <td><span class="q9_price"></span> 円</td>
+              </tr>
+              <tr>
+                  <th>素材・ロゴの有無：<span class="q10_kind">ー</span></th>
+                  <td><span class="q10_price"></span> 円</td>
+              </tr>
+            </table>
+      </section>
+      <div class="contact">
+          <button id="openModal">お問い合わせはこちら</button>
+      </div>
+
+      <div class="redirect">
+          <a href="index.html">シュミレーションをやり直す</a>
+      </div>
+     </div>
+
+
+     <!-- モーダルエリアここから -->
+<section id="modalArea" class="modalArea">
+  <div id="modalBg" class="modalBg"></div>
+  <div class="modalWrapper">
+    <div class="modalContents">
+      <h1>お問い合わせフォーム</h1>
+      <form>
+          <div class="modal">
+              <div class="contact-form">
+                  <ul>
+                      <li>
+                          <label class="contact-label" for="">お客様のお名前</label>
+                      </li>
+                      <li>
+                          <input type="text"  placeholder="山田 太郎">
+                      </li>
+                  </ul>
+              </div>
+              <div class="contact-form">
+                  <ul>
+                      <li>
+                          <label class="contact-label" for="">お客様のEmail</label>
+                      </li>
+                      <li>
+                          <input type="email" placeholder="example@email.com">
+                      </li>
+                  </ul>
+              </div>
+              <div class="contact-text">
+                  <ul>
+                      <li>
+                          <label for="">お問い合わせ内容</label>
+                      </li>
+                      <li>
+                          <textarea name="" id="" cols="30" rows="5"></textarea>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="send-btn">
+              <input type="submit" value="送信(ダミー)">
+          </div>
+      </form>
+    </div>
+    <div id="closeModal" class="closeModal">
+      ×
+    </div>
+  </div>
+</section>
+<!-- モーダルエリアここまで -->
+
+ </div>
+ <footer>
+     <div class="footer-title">
+         (C)お見積もりシュミレーションアプリ
+     </div>
+ </footer>
+  </body>
+</html>
